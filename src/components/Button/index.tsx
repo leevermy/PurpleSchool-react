@@ -16,7 +16,7 @@ const Button: React.FC<IButtonProps> = ({ children, disabled = false, onClick, c
 	return (
 		<button
 		onClick={disabled ? undefined : onClick}
-		className={`bg-violet-400 px-8 py-4 text-white hover:bg-violet-500 cursor-pointer transition duration-300 ${className}`}
+		className={`bg-violet-400 px-8 py-4 text-white rounded-xl hover:bg-violet-500 cursor-pointer transition duration-300 ${className}`}
 		>{children}</button>
 	)
 }
