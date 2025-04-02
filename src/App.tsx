@@ -12,8 +12,6 @@ function App() {
   const [searchValue, setSearchValue] = useState<string>('');
   const [userName, setUserName] = useState<string>('');
 
-
-
   return (
     <>
       <Header />
