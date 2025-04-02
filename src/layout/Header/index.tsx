@@ -1,29 +1,16 @@
 import Logo from '../../assets/logo.svg';
-import Login from '../../assets/Login.svg';
-import Badge from '../../components/Badge/indes';
+import Badge from '../../components/Badge/index';
 
-const navItems = [
-	{
-		label: 'Поиск фильмов',
-		icon: '',
-		link: '',
-		badge: false
-	},
-	{
-		label: 'Мои фильмы',
-		icon: '',
-		link: '',
-		badge: true
-	},
-	{
-		label: 'Войти',
-		icon: Login,
-		link: '',
-		badge: false
-	},
-]
+interface IHeader {
+	label: string;
+	icon?: string;
+	link?: string;
+	badge?: boolean;
+	onClick?: () => void;
+  }
 
-const Header: React.FC =() => {
+
+const Header: React.FC<{navItems: IHeader[]}> = ( {navItems} ) => {
 	return (
 		<header className='py-4'>
 			<div className='container flex justify-between items-center'>
@@ -31,11 +18,11 @@ const Header: React.FC =() => {
 					<a href=""><img src={Logo} alt="Logo" /></a>
 				</div>
 				<nav className='flex gap-4'>
-					{navItems.map((item, index) => (
-						<div key={index} className='flex gap-2 px-4 py-3'>
-							<a href={item.link} className='text-gray-300 hover:text-white transition duration-300'>{item.label}</a>
+					{navItems.map((item) => (
+						<div key={item.label} className='flex gap-2 px-4 py-3'>
+							<a href={item.link || '#'} className='text-gray-300 hover:text-white transition duration-300'>{item.label}</a>
 							{item.icon && <img src={item.icon} alt={item.label} />}
-							{item.badge === true && <Badge quantity={0}/>}
+							{item.badge === true && <Badge quantity={22}/>}
 						</div>
 					))}
 				</nav>

@@ -26,7 +26,8 @@ const Search: React.FC<ISearchProps> = ({value, setValue}) => {
 
 			<div className='flex gap-2'>
 				<Input value={value} onChange={(e) => setValue(e.target.value)} placeholder='Введите название' icon={SearchIcon} />
-				<Button onClick={handleSearch} className='bg-violet-500 hover:bg-violet-600 py-4 px-8 text-gray-100'>Искать</Button>
+				<Button onClick={handleSearch} disabled={value === ''} 
+				className={`${value === '' ? 'bg-violet-400' : 'bg-violet-500 hover:bg-violet-600'}  py-4 px-8 text-gray-100`}>Искать</Button>
 			</div>
 		</div>
 	)

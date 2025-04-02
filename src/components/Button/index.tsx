@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 interface IButtonProps {
 	children : React.ReactNode;
 	disabled?: boolean;
@@ -7,19 +8,26 @@ interface IButtonProps {
 }
 
 /**
- * 
  * @property {React.ReactNode} children
- * @property {boolean} [disabled = false]
- * @property {string} [className] - classes from Tailwind
- * @property {() => void} onClick
- * @property {string} type
+ * @property {boolean} [disabled] 
+ * @property {string} [className] - Tailwind
+ * @property {() => void}  onClick
+ * @property {'button' | 'submit' | 'reset'} [type = 'submit'] 
  */
 const Button: React.FC<IButtonProps> = ({ children, disabled = false, onClick, className = '', type='button'}) => {
 	return (
 		<button
 		type={type}
 		onClick={disabled ? undefined : onClick}
-		className={`flex gap-2 items-center rounded-xl cursor-pointer transition duration-300 ${className}`}
+		disabled={disabled}
+		className={clsx(
+			'flex gap-2 items-center rounded-xl transition duration-300 w-fit',
+			{
+			  'cursor-not-allowed opacity-50': disabled,
+			  'cursor-pointer': !disabled,
+			},
+			className
+		  )}
 		>{children}</button>
 	)
 }
