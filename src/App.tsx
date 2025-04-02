@@ -1,49 +1,35 @@
 import { useState } from 'react';
-import Button from './components/Button'
-import Description from './components/Description';
-import Title from './components/Title';
 import Header from './layout/Header';
-import Input from './components/Input/Input';
-import SearchIcon from './assets/LeftIcon.svg';
 import MovieCard from './components/MovieCard';
 import MoviesLayout from './layout/MoviesLayout';
+import AuthForm from './components/AuthForm';
+import Search from './components/Search';
+
 import movies from './temporaryData';
 
 
 function App() {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState<string>('');
+  const [userName, setUserName] = useState<string>('');
 
-  const handleEvent = () => {
-    alert(`Searching: ${searchValue}`);
-  }
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-  }
-
-  const addToFavorite = () => { alert('Added to favorite') }
 
   return (
     <>
       <Header />
-      <div className='container'>
-        <Title className='mt-20'>Поиск</Title>
-        <Description className='w-[450px]'>
-          Введите название фильма, сериала или мультфильма <br/>для поиска и добавления в избранное.
-        </Description>
-        <div className='flex gap-2'>
-          <Input value={searchValue} onChange={handleOnChange}placeholder='Введите название' icon={SearchIcon}/>
-          <Button onClick={handleEvent} className='bg-violet-500 hover:bg-violet-600 py-4 px-8 text-gray-100'>Искать</Button>
-        </div>
+      <div className='container grid grid-cols-2 gap-4'>
+        <Search value={searchValue} setValue={setSearchValue}/>
+        <AuthForm value={userName} setValue={setUserName}/>
       </div>
+
       <MoviesLayout>
-          {movies.map((movie, index) => (
+          {movies.map((movie) => (
           <MovieCard 
-            key={index} 
+            key={movie.id} 
             title={movie.title} 
             poster={movie.poster} 
             rating={movie.rating} 
-            onClick={addToFavorite}/>
+            onClick={() => alert('Added to favorite')}/>
           ))}
       </MoviesLayout>
     </>
