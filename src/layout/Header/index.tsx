@@ -19,7 +19,7 @@ const Header: React.FC<{navItems: IHeader[]}> = ( {navItems} ) => {
 				</div>
 				<nav className='flex gap-4'>
 					{navItems.map((item) => (
-						<div key={item.label} className='flex gap-2 px-4 py-3'>
+						<div key={item.label} onClick={item.onClick ? item.onClick : undefined} className='flex gap-2 px-4 py-3'>
 							<a href={item.link || '#'} className='text-gray-300 hover:text-white transition duration-300'>{item.label}</a>
 							{item.icon && <img src={item.icon} alt={item.label} />}
 							{item.badge === true && <Badge quantity={22}/>}

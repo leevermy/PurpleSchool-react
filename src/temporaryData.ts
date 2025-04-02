@@ -38,3 +38,15 @@ const publicNav = [
 	  ? privateNav(username, logOut)
 	  : publicNav;
   };
+
+
+  export const usersStorage = [
+	{
+		name:"Алексей", 
+		isLoggedIn:false,
+	},
+	{
+		name:"Василий", 
+		isLoggedIn:false,
+	}
+]

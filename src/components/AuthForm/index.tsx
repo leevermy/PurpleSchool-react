@@ -1,29 +1,43 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../Button'
 import Input from '../Input/Input'
 import Title from '../Title'
 
 
 interface IAuthFormProps {
-	setValue: (e: any) => void;
+	handleLogIn: (e: any) => boolean;
 }
 
-const AuthForm: React.FC<IAuthFormProps> = ({ setValue }) => {
+const AuthForm: React.FC<IAuthFormProps> = ({ handleLogIn }) => {
 	const [formValue, setFormValue] = useState<string>('');
+	const [error, setError] = useState<boolean>(false);
 	
 	const onSubmit = (e: any) => {
 		e.preventDefault();
-		setValue(formValue);
-		setFormValue('');
+		const isError = handleLogIn(formValue);
+		setError(isError);
+		if(!isError) setFormValue('');
+		
 	}
+
+	useEffect(() => {
+		const timerID = setTimeout(() => {
+			setError(false);
+			setFormValue('');
+		}, 2000)
+		return () => clearTimeout(timerID);
+	}, [error])
 
 	return (
 		<form className='flex flex-col gap-7' onSubmit={onSubmit}>
           <Title className='mt-20'>Вход</Title>
+		  <div>
             <Input 
 				value={formValue} 
 				onChange={(e) => setFormValue(e.target.value)} 
 				placeholder='Ваше имя'/>
+			{error && <p className='text-red-400 m-0 p-0'>There is no such user</p>}
+		  </div>
             <Button 
 				type="submit" 
 				disabled={formValue === ''} 

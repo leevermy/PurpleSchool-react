@@ -5,11 +5,7 @@ import MoviesLayout from './layout/MoviesLayout';
 import AuthForm from './components/AuthForm';
 import Search from './components/Search';
 
-import {movies, getNavItems} from './temporaryData';
-
-/*
-[{"name":"Алексей", "isLoggedIn":"false"}, {"name":"Василий", "isLoggedIn":"false"]
-*/
+import {movies, usersStorage, getNavItems} from './temporaryData';
 
 interface IDataFromStorage {
   name:string;
@@ -19,9 +15,27 @@ interface IDataFromStorage {
 function App() {
   const [ searchValue, setSearchValue ] = useState<string>('');
   const [ userName, setUserName ] = useState<string>('');
-  const [ dataFromStorage, setDataFromStorage ] = useState<IDataFromStorage[]>(JSON.parse(localStorage.getItem('users') ?? ''));
+  const [ dataFromStorage, setDataFromStorage ] = useState<IDataFromStorage[]>(usersStorage);
 
-  const logOut = () => {
+  useEffect(() => {
+    localStorage.setItem('users', JSON.stringify(dataFromStorage));
+  }, [dataFromStorage]);
+
+  const handleLogIn = (username: string): boolean => {
+    const user = dataFromStorage.filter(user => user.name === username);
+    console.log(user)
+    if (user.length === 0) {
+      return true;
+    }
+    const updatedStorage = dataFromStorage.map((user) => 
+      user.name === username ? {...user, isLoggedIn: true}: user
+    );
+    setDataFromStorage(updatedStorage);
+    setUserName(username);
+    return false;
+  }
+
+  const handleLogOut = () => {
   const updated = [
     ...dataFromStorage.filter(item => item.name !== userName),
     { name: userName, isLoggedIn: false }
@@ -30,17 +44,15 @@ function App() {
   setUserName('');
 };
 
-  const navItems = getNavItems(userName, logOut);
-  useEffect(() => {
-    localStorage.setItem('users', JSON.stringify(dataFromStorage));
-  }, [dataFromStorage]);
+  const navItems = getNavItems(userName, handleLogOut);
+
 
   return (
     <>
       <Header navItems={navItems}/>
       <div className='container grid grid-cols-2 gap-4'>
         <Search value={searchValue} setValue={setSearchValue}/>
-        <AuthForm setValue={setUserName}/>
+        <AuthForm handleLogIn={handleLogIn}/>
       </div>
 
       <MoviesLayout>
