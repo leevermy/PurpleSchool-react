@@ -1,19 +1,5 @@
 import clsx from 'clsx';
-interface IInputProps {
-	icon?: string;
-	value: string;
-	placeholder: string;
-	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-	className?: string
-}
-
-/**
- * @property {string} [icon]
- * @property {string} value - value in input
- * @property {string} [placeholder]
- * @property {string} [className] - tailwind
- * @property {(e: React.ChangeEvent<HTMLInputElement>) => void} onChange
- */
+import { IInputProps } from './props';
 
 const Input: React.FC<IInputProps> = ({ icon, value, placeholder, className, onChange }) => {
 	return (

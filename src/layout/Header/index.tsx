@@ -1,14 +1,6 @@
 import Logo from '../../assets/logo.svg';
 import Badge from '../../components/Badge/index';
-
-interface IHeader {
-	label: string;
-	icon?: string;
-	link?: string;
-	badge?: boolean;
-	onClick?: () => void;
-  }
-
+import { IHeader } from './props';
 
 const Header: React.FC<{navItems: IHeader[]}> = ( {navItems} ) => {
 	return (

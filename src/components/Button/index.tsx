@@ -1,19 +1,6 @@
 import clsx from 'clsx';
-interface IButtonProps {
-	children : React.ReactNode;
-	disabled?: boolean;
-	onClick?: () => void;
-	className?: string;
-	type?: "button" | "submit" | "reset" | undefined;
-}
+import { IButtonProps } from './props';
 
-/**
- * @property {React.ReactNode} children
- * @property {boolean} [disabled] 
- * @property {string} [className] - Tailwind
- * @property {() => void}  onClick
- * @property {'button' | 'submit' | 'reset'} [type = 'submit'] 
- */
 const Button: React.FC<IButtonProps> = ({ children, disabled = false, onClick, className = '', type='button'}) => {
 	return (
 		<button

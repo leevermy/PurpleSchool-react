@@ -2,22 +2,8 @@ import Button from '../Button';
 import starIcon from '../../assets/star.svg';
 import likeIcon from '../../assets/like.svg';
 import likedIcon from '../../assets/liked.svg';
+import { IMovieCardProps } from './props';
 
-interface IMovieCardProps {	
-	title: string;
-	poster: string;
-	rating: number;
-	isFavorite: boolean;
-	onClick: () => void;
-}
-/**
- * 
- * @property {string} title - movie name 
- * @property {string} poster - movie poster (link)
- * @property {number} rating 
- * @property {boolean} isFavorite - is in favorite list
- * @property {() => void} onClick 
- */
 const MovieCard: React.FC<IMovieCardProps> = ({ title, poster, rating, isFavorite, onClick}) => {
 
 	const icon = isFavorite ? likedIcon : likeIcon;

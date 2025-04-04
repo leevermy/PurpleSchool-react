@@ -3,11 +3,7 @@ import Description from '../Description'
 import Input from '../Input/Input'
 import Title from '../Title'
 import SearchIcon from '../../assets/LeftIcon.svg';
-
-interface ISearchProps {
-	value: string;
-	setValue: (e: any) => void;
-}
+import { ISearchProps } from './props';
 
 
 const Search: React.FC<ISearchProps> = ({value, setValue}) => {
@@ -21,7 +17,7 @@ const Search: React.FC<ISearchProps> = ({value, setValue}) => {
 			<Title className='mt-20'>Поиск</Title>
 
 			<Description className='w-[450px]'>
-				Введите название фильма, сериала или мультфильма <br />для поиска и добавления в избранное.
+				Введите название фильма, сериала или мультфильма<br />для поиска и добавления в избранное.
 			</Description>
 
 			<div className='flex gap-2'>

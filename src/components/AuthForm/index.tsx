@@ -2,11 +2,9 @@ import { useEffect, useState } from 'react';
 import Button from '../Button'
 import Input from '../Input/Input'
 import Title from '../Title'
+import { IAuthFormProps } from './props';
 
 
-interface IAuthFormProps {
-	handleLogIn: (e: any) => boolean;
-}
 
 const AuthForm: React.FC<IAuthFormProps> = ({ handleLogIn }) => {
 	const [formValue, setFormValue] = useState<string>('');

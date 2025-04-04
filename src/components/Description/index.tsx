@@ -1,7 +1,3 @@
-/**
- * @props {React.ReactNode} children
- * @props {string} [className] - styles from Tailwind
- */
 const Description: React.FC<{children: React.ReactNode, className?: string}> = ({children, className }) => {
 	return (
 		<p
