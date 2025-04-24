@@ -1,58 +1,23 @@
-import { useEffect, useState } from 'react';
+import { FC } from 'react';
 import Header from './layout/Header';
 import MovieCard from './components/MovieCard';
 import MoviesLayout from './layout/MoviesLayout';
 import AuthForm from './components/AuthForm';
 import Search from './components/Search';
 
-import {movies, usersStorage, getNavItems} from './temporaryData';
-
-interface IDataFromStorage {
-  name:string;
-  isLoggedIn:boolean;
-}
-
-function App() {
-  const [ searchValue, setSearchValue ] = useState<string>('');
-  const [ userName, setUserName ] = useState<string>('');
-  const [ dataFromStorage, setDataFromStorage ] = useState<IDataFromStorage[]>(usersStorage);
-
-  useEffect(() => {
-    localStorage.setItem('users', JSON.stringify(dataFromStorage));
-  }, [dataFromStorage]);
-
-  const handleLogIn = (username: string): boolean => {
-    const user = dataFromStorage.filter(user => user.name === username);
-    console.log(user)
-    if (user.length === 0) {
-      return true;
-    }
-    const updatedStorage = dataFromStorage.map((user) => 
-      user.name === username ? {...user, isLoggedIn: true}: user
-    );
-    setDataFromStorage(updatedStorage);
-    setUserName(username);
-    return false;
-  }
-
-  const handleLogOut = () => {
-  const updated = [
-    ...dataFromStorage.filter(item => item.name !== userName),
-    { name: userName, isLoggedIn: false }
-  ];
-  setDataFromStorage(updated);
-  setUserName('');
-};
-
-  const navItems = getNavItems(userName, handleLogOut);
+import {movies} from './temporaryData';
+import { UserContextProvider } from './context/user.context'
 
 
+
+const App: FC = () => {
+  
   return (
-    <>
-      <Header navItems={navItems}/>
+    <UserContextProvider>
+      <Header />
       <div className='container grid grid-cols-2 gap-4'>
-        <Search value={searchValue} setValue={setSearchValue}/>
-        <AuthForm handleLogIn={handleLogIn}/>
+        <Search/>
+        <AuthForm />
       </div>
 
       <MoviesLayout>
@@ -66,7 +31,7 @@ function App() {
             onClick={() => alert('Added to favorite')}/>
           ))}
       </MoviesLayout>
-    </>
+    </UserContextProvider>
   )
 }
 

@@ -26,14 +26,14 @@ const publicNav = [
 	{ label: 'Войти', icon: LogInIcon, link: '', badge: false },
   ];
   
-  const privateNav = (username: string, logOut: () => void) => [
+const privateNav = (username: string, logOut: (username: string) => void) => [
 	{ label: 'Поиск фильмов', link: '' },
 	{ label: 'Мои фильмы', link: '', badge: true },
 	{ label: username, icon: AuthIcon, link: '', badge: false },
-	{ label: 'Выйти', link: '', badge: false, onClick: logOut },
+	{ label: 'Выйти', link: '', badge: false, onClick: () => logOut(username) },
   ];
 
-  export const getNavItems = (username: string, logOut: () => void) => {
+export const getNavItems = (username: string | undefined, logOut: (userName: string) => void) => {
 	return username
 	  ? privateNav(username, logOut)
 	  : publicNav;

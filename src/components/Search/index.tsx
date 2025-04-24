@@ -3,13 +3,13 @@ import Description from '../Description'
 import Input from '../Input/Input'
 import Title from '../Title'
 import SearchIcon from '../../assets/LeftIcon.svg';
-import { ISearchProps } from './props';
+import { useUserContext } from '../../hooks';
 
-
-const Search: React.FC<ISearchProps> = ({value, setValue}) => {
+const Search: React.FC = () => {
+	const { searchValue, setSearchValue } = useUserContext();
 
 	const handleSearch = () => {
-		alert(`Searching: ${value}`);
+		alert(`Searching: ${searchValue}`);
 	}
 
 	return (
@@ -21,9 +21,9 @@ const Search: React.FC<ISearchProps> = ({value, setValue}) => {
 			</Description>
 
 			<div className='flex gap-2'>
-				<Input value={value} onChange={(e) => setValue(e.target.value)} placeholder='Введите название' icon={SearchIcon} />
-				<Button onClick={handleSearch} disabled={value === ''} 
-				className={`${value === '' ? 'bg-violet-400' : 'bg-violet-500 hover:bg-violet-600'}  py-4 px-8 text-gray-100`}>Искать</Button>
+				<Input value={searchValue || ''} onChange={(e) => setSearchValue(e.target.value)} placeholder='Введите название' icon={SearchIcon} />
+				<Button onClick={handleSearch} disabled={searchValue === ''} 
+				className={`${searchValue === '' ? 'bg-violet-400' : 'bg-violet-500 hover:bg-violet-600'}  py-4 px-8 text-gray-100`}>Искать</Button>
 			</div>
 		</div>
 	)

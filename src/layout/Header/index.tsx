@@ -1,8 +1,24 @@
 import Logo from '../../assets/logo.svg';
 import Badge from '../../components/Badge/index';
 import { IHeader } from './props';
+import { getNavItems } from '../../temporaryData';
+import { useUserContext } from '../../hooks';
 
-const Header: React.FC<{navItems: IHeader[]}> = ( {navItems} ) => {
+const Header: React.FC = ( ) => {
+	const { dataFromStorage, setDataFromStorage, userName, setUserName } = useUserContext();
+
+	const handleLogOut = (name: string) => {
+		const accountIndex = dataFromStorage.findIndex(el => el.name === name);
+		const updated = [...dataFromStorage];
+		updated[accountIndex] = {
+			...updated[accountIndex],
+			isLoggedIn: false,
+		}
+		setDataFromStorage(updated);
+		setUserName('');
+	}
+
+	const navItems: IHeader[] = getNavItems(userName, handleLogOut);
 	return (
 		<header className='py-4'>
 			<div className='container flex justify-between items-center'>

@@ -2,13 +2,27 @@ import { useEffect, useState } from 'react';
 import Button from '../Button'
 import Input from '../Input/Input'
 import Title from '../Title'
-import { IAuthFormProps } from './props';
+import { useUserContext } from '../../hooks';
 
 
-
-const AuthForm: React.FC<IAuthFormProps> = ({ handleLogIn }) => {
+const AuthForm: React.FC = () => {
+	const { dataFromStorage, setDataFromStorage, setUserName} = useUserContext();
 	const [formValue, setFormValue] = useState<string>('');
 	const [error, setError] = useState<boolean>(false);
+	
+
+	const handleLogIn = (name: string):boolean => {
+		const accountIndex = dataFromStorage.findIndex(el => el.name === name);
+		if (accountIndex === -1) return true;
+		const updated = [...dataFromStorage];
+		updated[accountIndex] = {
+			...updated[accountIndex],
+			isLoggedIn: true,
+		}
+		setDataFromStorage(updated);
+		setUserName(name);
+		return false;
+	}
 	
 	const onSubmit = (e: any) => {
 		e.preventDefault();
