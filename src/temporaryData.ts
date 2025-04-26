@@ -1,7 +1,7 @@
 import LogInIcon from './assets/Login.svg';
 import AuthIcon from './assets/User Rounded.svg'
 
-interface Movie {
+export interface IMovie {
 	id: number;
 	title: string;
 	poster: string;
@@ -9,7 +9,7 @@ interface Movie {
 	isFavorite: boolean;
 }
 
-export const movies: Movie[] = [];
+export const movies: IMovie[] = [];
 for (let i = 0; i < 12; i++) {
   movies.push(	{
 	id: i,
@@ -21,15 +21,14 @@ for (let i = 0; i < 12; i++) {
 }
 
 const publicNav = [
-	{ label: 'Поиск фильмов', link: '' },
-	{ label: 'Мои фильмы', link: '', badge: true },
-	{ label: 'Войти', icon: LogInIcon, link: '', badge: false },
+	{ label: 'Поиск фильмов', link: '/movies' },
+	{ label: 'Войти', icon: LogInIcon, link: '/auth', badge: false },
   ];
   
 const privateNav = (username: string, logOut: (username: string) => void) => [
-	{ label: 'Поиск фильмов', link: '' },
-	{ label: 'Мои фильмы', link: '', badge: true },
-	{ label: username, icon: AuthIcon, link: '', badge: false },
+	{ label: 'Поиск фильмов', link: '/movies' },
+	{ label: 'Мои фильмы', link: '/favourites', badge: true },
+	{ label: username, icon: AuthIcon, link: '/user-page', badge: false },
 	{ label: 'Выйти', link: '', badge: false, onClick: () => logOut(username) },
   ];
 
