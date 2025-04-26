@@ -9,7 +9,6 @@ const AuthForm: React.FC = () => {
 	const { dataFromStorage, setDataFromStorage, setUserName} = useUserContext();
 	const [formValue, setFormValue] = useState<string>('');
 	const [error, setError] = useState<boolean>(false);
-	
 
 	const handleLogIn = (name: string):boolean => {
 		const accountIndex = dataFromStorage.findIndex(el => el.name === name);
