@@ -1,4 +1,4 @@
-import Button from '../Button';
+import Button from '../button';
 import starIcon from '../../assets/star.svg';
 import likeIcon from '../../assets/like.svg';
 import likedIcon from '../../assets/liked.svg';

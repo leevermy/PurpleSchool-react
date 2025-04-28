@@ -1,7 +1,7 @@
-import Button from '../Button';
-import Description from '../Description'
-import Input from '../Input/Input'
-import Title from '../Title'
+import Button from '../button';
+import Description from '../description'
+import Input from '../input/Input'
+import Title from '../title'
 import SearchIcon from '../../assets/LeftIcon.svg';
 import { useUserContext } from '../../hooks';
 

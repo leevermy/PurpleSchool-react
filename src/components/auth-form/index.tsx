@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import Button from '../Button'
-import Input from '../Input/Input'
-import Title from '../Title'
+import Button from '../button'
+import Input from '../input/Input'
+import Title from '../title'
 import { useUserContext } from '../../hooks';
 
 
