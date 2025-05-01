@@ -4,13 +4,16 @@ import Input from '../input/Input'
 import Title from '../title'
 import SearchIcon from '../../assets/LeftIcon.svg';
 import { useUserContext } from '../../hooks';
+import { useNavigate } from 'react-router-dom';
 
 const Search: React.FC = () => {
 	const { searchValue, setSearchValue } = useUserContext();
 
+	const navigate = useNavigate();
+
 	const handleSearch = () => {
-		alert(`Searching: ${searchValue}`);
-	}
+		navigate(`/?query=${searchValue}`);
+	};
 
 	return (
 		<div>
