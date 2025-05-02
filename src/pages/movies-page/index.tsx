@@ -13,7 +13,7 @@ const MoviesLayout: React.FC= () => {
 			<div className='mb-10'>
 				<Search/>
 			</div>
-			<div className='grid grid-cols-4 gap-4'>
+			<div className='grid grid-cols-3 lg:grid-cols-4  gap-4'>
 				{movies.length > 1 && movies.map((movie) => (
 				<MovieCard 
 					key={movie['#IMDB_ID']} 

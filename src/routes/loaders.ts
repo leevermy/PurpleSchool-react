@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const PATH = 'http://search.imdbot.workers.dev/'
+const PATH = 'https://search.imdbot.workers.dev/'
 
 export async function moviesLoader({ request }: { request: Request }) {
   const url = new URL(request.url);
@@ -8,7 +8,7 @@ export async function moviesLoader({ request }: { request: Request }) {
 
   if (!query) return [];
 
-  const response = await axios.get(`${PATH}?q=${query}`);
+  const response = await axios.get(`${PATH}${url.search}`);
   return response.data?.description || [];
 }
 
@@ -19,6 +19,6 @@ export async function movieLoader({ request }: { request: Request }) {
   
 	if (!query) return [];
   
-	const response = await axios.get(`${PATH}?tt=${query}`);
-	return response.data?.short || '';
+	const response = await axios.get(`${PATH}${url.search}`);
+	return response.data?.short || [];
   }

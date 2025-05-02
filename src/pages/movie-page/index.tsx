@@ -24,7 +24,7 @@ const MoviePage: FC = () => {
           <MovieInfo name={'Тип'} data={movie['@type']}/>
           <MovieInfo name={'Дата выхода'} data={movie.datePublished}/>
           <MovieInfo name={'Длительность'} data={''}/>
-          <MovieInfo name={'Жанр'} data={movie.keywords}/>
+          <MovieInfo name={'Жанр'} data={movie.genre}/>
         </div>
       </div>
       <div className='flex flex-col gap-y-3.5'>

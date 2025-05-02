@@ -12,7 +12,7 @@ const Search: React.FC = () => {
 	const navigate = useNavigate();
 
 	const handleSearch = () => {
-		navigate(`/?query=${searchValue}`);
+		navigate(`/?q=${searchValue}`);
 	};
 
 	return (
