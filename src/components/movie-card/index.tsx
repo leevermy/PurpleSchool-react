@@ -1,7 +1,7 @@
 import { IMovieCardProps } from './props';
 import { Link } from 'react-router-dom';
-import Rating from '../shared/Rating';
-import AddToFavoriteButton from '../shared/AddToFavoriteButton';
+import Rating from '../../shared/Rating';
+import AddToFavoriteButton from '../../shared/AddToFavoriteButton';
 
 const MovieCard: React.FC<IMovieCardProps> = ({ title, poster, rating, linkToMovie, onClick}) => {
 	

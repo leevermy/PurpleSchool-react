@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import starIcon from '../../../assets/star.svg';
+import starIcon from '../../assets/star.svg';
 import cn from 'clsx'
 
 const Rating:FC<{ rating: number | string, className?: string }> = ({ rating, className }) => {

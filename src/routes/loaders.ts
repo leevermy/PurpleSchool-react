@@ -6,7 +6,7 @@ export async function moviesLoader({ request }: { request: Request }) {
   const url = new URL(request.url);
   const query = url.searchParams.get('q') || '';
 
-  if (!query) return [];
+  if (!query) return null;
 
   const response = await axios.get(`${PATH}${url.search}`);
   return response.data?.description || [];

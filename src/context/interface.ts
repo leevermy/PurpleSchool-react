@@ -8,3 +8,8 @@ export interface IUserContext {
 	dataFromStorage: IDataFromStorage[];
 	setDataFromStorage: (data: IDataFromStorage[]) => void;
   }
+
+  export interface IUser {
+	name: string;
+	isLoggedIn: boolean;
+  }

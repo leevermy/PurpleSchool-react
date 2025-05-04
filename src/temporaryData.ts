@@ -3,7 +3,6 @@ import AuthIcon from './assets/User Rounded.svg'
 
 
 const publicNav = [
-	{ label: 'Поиск фильмов', link: '/' },
 	{ label: 'Войти', icon: LogInIcon, link: '/auth', badge: false },
   ];
   

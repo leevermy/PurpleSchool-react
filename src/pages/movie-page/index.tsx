@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import { useLoaderData } from 'react-router-dom';
-import Rating from '../../components/shared/Rating';
-import AddToFavoriteButton from '../../components/shared/AddToFavoriteButton';
-import MovieInfo from '../../components/shared/MovieInfo';
-import Review from '../../components/shared/Review';
+import Rating from '../../shared/Rating';
+import AddToFavoriteButton from '../../shared/AddToFavoriteButton';
+import MovieInfo from '../../shared/MovieInfo';
+import Review from '../../shared/Review';
 
 const MoviePage: FC = () => {
   const movie = useLoaderData() as any;
