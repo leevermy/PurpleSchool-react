@@ -3,12 +3,14 @@ import Button from '../button'
 import Input from '../input/Input'
 import Title from '../title'
 import { useUserContext } from '../../hooks';
+import { useNavigate } from 'react-router-dom';
 
 
 const AuthForm: React.FC = () => {
 	const { dataFromStorage, setDataFromStorage, setUserName} = useUserContext();
 	const [formValue, setFormValue] = useState<string>('');
 	const [error, setError] = useState<boolean>(false);
+	const navigate = useNavigate();
 
 	const handleLogIn = (name: string):boolean => {
 		const accountIndex = dataFromStorage.findIndex(el => el.name === name);
@@ -20,6 +22,7 @@ const AuthForm: React.FC = () => {
 		}
 		setDataFromStorage(updated);
 		setUserName(name);
+
 		return false;
 	}
 	
@@ -27,8 +30,10 @@ const AuthForm: React.FC = () => {
 		e.preventDefault();
 		const isError = handleLogIn(formValue);
 		setError(isError);
-		if(!isError) setFormValue('');
-		
+		if(!isError) {
+			setFormValue('');
+			navigate('/');
+		}
 	}
 
 	useEffect(() => {

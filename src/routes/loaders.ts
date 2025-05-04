@@ -1,0 +1,24 @@
+import axios from 'axios';
+
+const PATH = 'https://search.imdbot.workers.dev/'
+
+export async function moviesLoader({ request }: { request: Request }) {
+  const url = new URL(request.url);
+  const query = url.searchParams.get('q') || '';
+
+  if (!query) return null;
+
+  const response = await axios.get(`${PATH}${url.search}`);
+  return response.data?.description || [];
+}
+
+
+export async function movieLoader({ request }: { request: Request }) {
+	const url = new URL(request.url);
+	const query = url.searchParams.get('tt') || '';
+  
+	if (!query) return [];
+  
+	const response = await axios.get(`${PATH}${url.search}`);
+	return response.data?.short || [];
+  }
