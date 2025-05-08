@@ -4,14 +4,12 @@ import { useUserContext } from '../../hooks';
  
  const RequireAuth: FC<{children: React.ReactNode}> = ({children}) => {
 	const {userName} = useUserContext();
-	console.log(userName)
 
 	if (!userName) {
 		console.log('no')
 		return <Navigate to='/auth' replace/>
 	};
-	console.log('yes')
-
+	
 	return children;
  }
  

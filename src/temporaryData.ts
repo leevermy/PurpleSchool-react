@@ -26,7 +26,7 @@ export const getNavItems = (username: string | undefined, logOut: (userName: str
 		isLoggedIn:false,
 	},
 	{
-		name:"Василий", 
+		name:"Евгений", 
 		isLoggedIn:false,
 	}
 ]
